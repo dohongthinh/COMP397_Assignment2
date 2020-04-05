@@ -28,10 +28,12 @@ var scenes;
         // Initializing and Instantiating
         End.prototype.Start = function () {
             //instantiate a new Text object
-            this._endLabel = new objects.Label("End Scene", "80px", "Consolas", "#FFFF00", 320, 180, true);
+            this._gameOverLabel = new objects.Label("Game Over", "80px", "Consolas", "#FFFF00", 320, 180, true);
             // buttons
-            this._backButton = new objects.Button(config.Game.ASSETS.getResult("backButton"), 320, 430, true);
+            this._restartButton = new objects.Button(config.Game.ASSETS.getResult("restartButton"), 320, 430, true);
             this._background = new objects.Background();
+            this._scoreBoard = new managers.ScoreBoard();
+            this._scoreBoard.HighScore = config.Game.HIGH_SCORE;
             this.Main();
         };
         End.prototype.Update = function () {
@@ -39,11 +41,17 @@ var scenes;
         };
         End.prototype.Main = function () {
             this.addChild(this._background);
-            this.addChild(this._endLabel);
-            this.addChild(this._backButton);
-            this._backButton.on("click", function () {
+            this.addChild(this._gameOverLabel);
+            this.addChild(this._restartButton);
+            this._restartButton.on("click", function () {
+                config.Game.LIVES = 5;
+                config.Game.SCORE = 0;
                 config.Game.SCENE = scenes.State.PLAY;
             });
+            this.addChild(this._scoreBoard.highScoreLabel);
+        };
+        End.prototype.Clean = function () {
+            this.removeAllChildren();
         };
         return End;
     }(objects.Scene));

@@ -11,19 +11,7 @@ module managers
             {
                 if(!object2.isColliding)
                     {
-                        switch(object2.type)
-                        {
-                            case enums.GameObjectType.ENEMY:
-                                console.log("Collision with enemy!");
-                                //let yaySound = createjs.Sound.play("yay");
-                                //yaySound.volume = 0.2;
-                                break;
-                            case enums.GameObjectType.METEOR:
-                                console.log("Collision with meteor!");
-                                //let thunderSound = createjs.Sound.play("thunder");
-                                //thunderSound.volume = 0.2;
-                                break;
-                        }
+                        Collision._collisionResponse(object2);
                         object2.isColliding = true;
                         return true;
                     }
@@ -51,19 +39,7 @@ module managers
             {
                 if(!object2.isColliding)
                 {
-                    switch(object2.type)
-                        {
-                            case enums.GameObjectType.ENEMY:
-                                console.log("Collision with enemy!");
-                                //let yaySound = createjs.Sound.play("yay");
-                                //yaySound.volume = 0.2;
-                                break;
-                            case enums.GameObjectType.METEOR:
-                                console.log("Collision with meteor!");
-                                //let thunderSound = createjs.Sound.play("thunder");
-                                //thunderSound.volume = 0.2;
-                                break;
-                        }
+                    Collision._collisionResponse(object2);
                     object2.isColliding = true;
                     return true;
                 }
@@ -76,6 +52,38 @@ module managers
             return false;
         }
         
+        private static _collisionResponse(object2: objects.GameObject) {
+            switch (object2.type) 
+            {
+                case enums.GameObjectType.ENEMY:
+                    {
+                        console.log("Collision with enemy!");
+                        //let yaySound = createjs.Sound.play("yay");
+                        //yaySound.volume = 0.2;
+                        config.Game.SCORE_BOARD.Score += 100;
+    
+                        if(config.Game.SCORE > config.Game.HIGH_SCORE)
+                        {
+                            config.Game.HIGH_SCORE = config.Game.SCORE;
+                        }
+                    }
+                    break;
+                case enums.GameObjectType.METEOR:
+                    {
+                        console.log("Collision with meteor!");
+                        //let thunderSound = createjs.Sound.play("thunder");
+                        //thunderSound.volume = 0.2;
+                        config.Game.SCORE_BOARD.Lives -= 1;
+    
+                        // check if lives falls less than 1 and then switch to END scene
+                        if(config.Game.LIVES < 1)
+                        {
+                            config.Game.SCENE = scenes.State.END;
+                        }
+                    }
+                    break;
+            }
+        }
 
     }
 }

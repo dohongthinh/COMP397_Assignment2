@@ -34,6 +34,8 @@ var scenes;
             for (var index = 0; index < config.Game.METEOR_NUM; index++) {
                 this._meteors.push(new objects.Meteor());
             }
+            this._scoreBoard = new managers.ScoreBoard();
+            config.Game.SCORE_BOARD = this._scoreBoard;
             this.Main();
         };
         Play.prototype.Update = function () {
@@ -55,6 +57,8 @@ var scenes;
                 var meteor = _a[_i];
                 this.addChild(meteor);
             }
+            this.addChild(this._scoreBoard.LivesLabel);
+            this.addChild(this._scoreBoard.ScoreLabel);
         };
         return Play;
     }(objects.Scene));

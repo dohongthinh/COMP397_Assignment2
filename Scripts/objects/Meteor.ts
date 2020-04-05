@@ -50,7 +50,7 @@ module objects
             this._verticalSpeed = util.Mathf.RandomRange(-2, 2);
             this._horizontalSpeed = util.Mathf.RandomRange(-5, -10);
             this.velocity = new Vector2(this._horizontalSpeed, this._verticalSpeed);
-            let randomX = util.Mathf.RandomRange(this.width * 5 ,this.width *8);
+            let randomX = util.Mathf.RandomRange(this.width * 8 ,this.width *10);
             let randomY = util.Mathf.RandomRange(config.Game.SCREEN_HEIGHT - this.halfHeight,this.halfHeight);
             this.position = new Vector2(randomX, randomY);
             console.log(this.position);

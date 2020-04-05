@@ -7,6 +7,7 @@ module scenes
         private _spaceship?: objects.Spaceship;        
         private _enemy?: objects.Enemy;
         private _meteors: Array<objects.Meteor>;
+        private _scoreBoard: managers.ScoreBoard;
         // PUBLIC PROPERTIES
 
         // CONSTRUCTOR
@@ -33,6 +34,8 @@ module scenes
             for (let index = 0; index < config.Game.METEOR_NUM; index++) {
                 this._meteors.push(new objects.Meteor());
             }
+            this._scoreBoard = new managers.ScoreBoard();
+            config.Game.SCORE_BOARD = this._scoreBoard;
              this.Main();
         }        
         
@@ -63,6 +66,10 @@ module scenes
             for (const meteor of this._meteors) {
                 this.addChild(meteor);
             }
+
+            this.addChild(this._scoreBoard.LivesLabel);
+
+            this.addChild(this._scoreBoard.ScoreLabel);
 
         }
 

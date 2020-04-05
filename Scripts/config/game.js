@@ -8,6 +8,9 @@ var config;
         Game.SCREEN_HEIGHT = 480;
         Game.FPS = 60; // 60 Frames per second       
         Game.METEOR_NUM = 4;
+        Game.LIVES = 5;
+        Game.SCORE = 0;
+        Game.HIGH_SCORE = 0;
         return Game;
     }());
     config.Game = Game;
