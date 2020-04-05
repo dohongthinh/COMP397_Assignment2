@@ -10,7 +10,8 @@ module objects
         private _position:Vector2;
         private _velocity:Vector2;
         private _isColliding:boolean;
-        private _isCentered:boolean;
+        private _isCentered:boolean;      
+        private _isActive : boolean;
         private _type: enums.GameObjectType;
         
         // PUBLIC PROPERTIES
@@ -91,7 +92,15 @@ module objects
                 this._centerGameObject();
             }
         }
-
+        public get isActive() : boolean 
+        {
+            return this._isActive;
+        }
+        
+        public set isActive(v : boolean) 
+        {
+            this._isActive = v;
+        }
         public get type() : enums.GameObjectType 
         {
             return this._type;

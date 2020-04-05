@@ -7,6 +7,7 @@ module enums
         METEOR,
         BACKGROUND,
         BUTTON,
+        MISSILE,
         UNDEFINED,
         NUM_OF_TYPES
     }

@@ -130,6 +130,16 @@ var objects;
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(GameObject.prototype, "isActive", {
+            get: function () {
+                return this._isActive;
+            },
+            set: function (v) {
+                this._isActive = v;
+            },
+            enumerable: true,
+            configurable: true
+        });
         Object.defineProperty(GameObject.prototype, "type", {
             get: function () {
                 return this._type;

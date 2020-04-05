@@ -35,18 +35,39 @@ var objects;
             }
         };
         Spaceship.prototype._move = function () {
-            var newPositionY = util.Mathf.Lerp(this.stage.mouseY, this.position.y, 0.05);
-            this.position = new objects.Vector2(this._horizontalPosition, newPositionY);
+            //let newPositionY = util.Mathf.Lerp(this.stage.mouseY, this.position.y, 0.05);
+            //this.position = new Vector2(this._horizontalPosition , newPositionY);
+            //let newPositionX = util.Mathf.Lerp(this.position.x, this.stage.mouseX, 0.05);
+            if ((config.Game.KEYBOARD_MANAGER.MoveUp) || (config.Game.KEYBOARD_MANAGER.MoveDown)) {
+                var newPositionY = (config.Game.KEYBOARD_MANAGER.MoveUp) ?
+                    this.position.y - this._verticalSpeed : this.position.y + this._verticalSpeed;
+                // TODO: make movement smoother with a velocity function
+                this.position = new objects.Vector2(this._horizontalPosition, newPositionY);
+            }
+            this._missileSpawn = new objects.Vector2(this.position.x + this.halfWidth, this.position.y);
         };
         // PUBLIC METHODS
         Spaceship.prototype.Start = function () {
-            this._horizontalPosition = 30; // locked to the bottom of the screen
+            this.type = enums.GameObjectType.SPACESHIP;
+            this._horizontalPosition = 30;
+            this._verticalSpeed = 10;
+            this.position = new objects.Vector2(this._horizontalPosition, config.Game.SCREEN_HEIGHT * 0.5);
         };
         Spaceship.prototype.Update = function () {
             this._move();
             this._checkBounds();
+            // fire bullets every 10 frames
+            if (createjs.Ticker.getTicks() % 10 == 0) {
+                if (config.Game.KEYBOARD_MANAGER.Fire) {
+                    this.FireMissiles();
+                }
+            }
         };
         Spaceship.prototype.Reset = function () {
+        };
+        Spaceship.prototype.FireMissiles = function () {
+            var missle = config.Game.MISSILE_MANAGER.GetMissile();
+            missle.position = this._missileSpawn;
         };
         return Spaceship;
     }(objects.GameObject));

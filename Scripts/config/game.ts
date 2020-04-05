@@ -11,6 +11,8 @@ module config
         public static LIVES: number = 5;
         public static SCORE: number = 0;
         public static HIGH_SCORE: number = 0;
-        public static SCORE_BOARD: managers.ScoreBoard;
+        public static SCORE_BOARD: managers.ScoreBoard; 
+        public static KEYBOARD_MANAGER: managers.Keyboard;     
+        public static MISSILE_MANAGER: managers.Missile;
     }
 }

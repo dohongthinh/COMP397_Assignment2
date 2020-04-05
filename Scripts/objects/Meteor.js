@@ -49,7 +49,6 @@ var objects;
             var randomX = util.Mathf.RandomRange(this.width * 8, this.width * 10);
             var randomY = util.Mathf.RandomRange(config.Game.SCREEN_HEIGHT - this.halfHeight, this.halfHeight);
             this.position = new objects.Vector2(randomX, randomY);
-            console.log(this.position);
         };
         return Meteor;
     }(objects.GameObject));

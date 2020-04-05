@@ -8,8 +8,9 @@ var enums;
         GameObjectType[GameObjectType["METEOR"] = 2] = "METEOR";
         GameObjectType[GameObjectType["BACKGROUND"] = 3] = "BACKGROUND";
         GameObjectType[GameObjectType["BUTTON"] = 4] = "BUTTON";
-        GameObjectType[GameObjectType["UNDEFINED"] = 5] = "UNDEFINED";
-        GameObjectType[GameObjectType["NUM_OF_TYPES"] = 6] = "NUM_OF_TYPES";
+        GameObjectType[GameObjectType["MISSILE"] = 5] = "MISSILE";
+        GameObjectType[GameObjectType["UNDEFINED"] = 6] = "UNDEFINED";
+        GameObjectType[GameObjectType["NUM_OF_TYPES"] = 7] = "NUM_OF_TYPES";
     })(GameObjectType = enums.GameObjectType || (enums.GameObjectType = {}));
 })(enums || (enums = {}));
 //# sourceMappingURL=GameObjectType.js.map

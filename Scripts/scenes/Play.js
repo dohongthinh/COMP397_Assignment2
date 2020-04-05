@@ -36,12 +36,17 @@ var scenes;
             }
             this._scoreBoard = new managers.ScoreBoard();
             config.Game.SCORE_BOARD = this._scoreBoard;
+            this._missileManager = new managers.Missile();
+            config.Game.MISSILE_MANAGER = this._missileManager;
+            this._keyboardManager = new managers.Keyboard();
+            config.Game.KEYBOARD_MANAGER = this._keyboardManager;
             this.Main();
         };
         Play.prototype.Update = function () {
             var _this = this;
             this._background.Update();
             this._spaceship.Update();
+            this._missileManager.Update();
             this._enemy.Update();
             managers.Collision.AABBCheck(this._spaceship, this._enemy);
             this._meteors.forEach(function (meteor) {
@@ -52,6 +57,7 @@ var scenes;
         Play.prototype.Main = function () {
             this.addChild(this._background);
             this.addChild(this._spaceship);
+            this._missileManager.AddMissilesToScene(this);
             this.addChild(this._enemy);
             for (var _i = 0, _a = this._meteors; _i < _a.length; _i++) {
                 var meteor = _a[_i];

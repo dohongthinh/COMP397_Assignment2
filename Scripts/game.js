@@ -18,7 +18,8 @@ var Game = (function () {
         { id: "spaceShip", src: "./Assets/images/spaceShip.png" },
         { id: "enemy", src: "./Assets/images/enemy.png" },
         { id: "meteor", src: "./Assets/images/meteor.png" },
-        { id: "restartButton", src: "./Assets/images/restartButton.png" }
+        { id: "restartButton", src: "./Assets/images/restartButton.png" },
+        { id: "missile", src: "./Assets/images/missile.png" }
     ];
     function Preload() {
         assets = new createjs.LoadQueue(); // asset container

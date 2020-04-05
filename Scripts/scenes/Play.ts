@@ -8,6 +8,9 @@ module scenes
         private _enemy?: objects.Enemy;
         private _meteors: Array<objects.Meteor>;
         private _scoreBoard: managers.ScoreBoard;
+        private _keyboardManager: managers.Keyboard;
+        
+        private _missileManager: managers.Missile;
         // PUBLIC PROPERTIES
 
         // CONSTRUCTOR
@@ -36,6 +39,13 @@ module scenes
             }
             this._scoreBoard = new managers.ScoreBoard();
             config.Game.SCORE_BOARD = this._scoreBoard;
+
+            this._missileManager = new managers.Missile();
+            config.Game.MISSILE_MANAGER = this._missileManager;
+            
+            this._keyboardManager = new managers.Keyboard();
+            config.Game.KEYBOARD_MANAGER = this._keyboardManager;
+
              this.Main();
         }        
         
@@ -44,6 +54,8 @@ module scenes
            this._background.Update();
 
            this._spaceship.Update();
+         
+           this._missileManager.Update();
 
            this._enemy.Update();
 
@@ -60,7 +72,7 @@ module scenes
             this.addChild(this._background);
 
             this.addChild(this._spaceship);
-
+            this._missileManager.AddMissilesToScene(this);
             this.addChild(this._enemy);
 
             for (const meteor of this._meteors) {
