@@ -21,6 +21,7 @@ let Game = (function(){
         {id:"background", src:"./Assets/images/background.gif"},
         {id:"spaceShip", src:"./Assets/images/spaceShip.png"},
         {id:"enemy", src:"./Assets/images/enemy.png"},
+        {id:"meteor", src:"./Assets/images/meteor.png"}
     ];
 
     function Preload():void

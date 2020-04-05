@@ -5,13 +5,25 @@ module managers
         public static squaredRadiusCheck(object1:objects.GameObject, object2:objects.GameObject):boolean
         {
             // squared radius check
-            let radii = object1.halfHeight + object2.halfHeight;
+            let radii = object1.halfWidth + object2.halfWidth;
 
             if(objects.Vector2.sqrDistance(object1.position, object2.position) < (radii * radii))
             {
                 if(!object2.isColliding)
                     {
-                        console.log("Collision!");
+                        switch(object2.type)
+                        {
+                            case enums.GameObjectType.ENEMY:
+                                console.log("Collision with enemy!");
+                                //let yaySound = createjs.Sound.play("yay");
+                                //yaySound.volume = 0.2;
+                                break;
+                            case enums.GameObjectType.METEOR:
+                                console.log("Collision with meteor!");
+                                //let thunderSound = createjs.Sound.play("thunder");
+                                //thunderSound.volume = 0.2;
+                                break;
+                        }
                         object2.isColliding = true;
                         return true;
                     }
@@ -39,7 +51,19 @@ module managers
             {
                 if(!object2.isColliding)
                 {
-                    console.log("Collision!");
+                    switch(object2.type)
+                        {
+                            case enums.GameObjectType.ENEMY:
+                                console.log("Collision with enemy!");
+                                //let yaySound = createjs.Sound.play("yay");
+                                //yaySound.volume = 0.2;
+                                break;
+                            case enums.GameObjectType.METEOR:
+                                console.log("Collision with meteor!");
+                                //let thunderSound = createjs.Sound.play("thunder");
+                                //thunderSound.volume = 0.2;
+                                break;
+                        }
                     object2.isColliding = true;
                     return true;
                 }

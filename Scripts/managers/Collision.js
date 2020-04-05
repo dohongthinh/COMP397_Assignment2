@@ -6,10 +6,21 @@ var managers;
         }
         Collision.squaredRadiusCheck = function (object1, object2) {
             // squared radius check
-            var radii = object1.halfHeight + object2.halfHeight;
+            var radii = object1.halfWidth + object2.halfWidth;
             if (objects.Vector2.sqrDistance(object1.position, object2.position) < (radii * radii)) {
                 if (!object2.isColliding) {
-                    console.log("Collision!");
+                    switch (object2.type) {
+                        case enums.GameObjectType.ENEMY:
+                            console.log("Collision with enemy!");
+                            //let yaySound = createjs.Sound.play("yay");
+                            //yaySound.volume = 0.2;
+                            break;
+                        case enums.GameObjectType.METEOR:
+                            console.log("Collision with meteor!");
+                            //let thunderSound = createjs.Sound.play("thunder");
+                            //thunderSound.volume = 0.2;
+                            break;
+                    }
                     object2.isColliding = true;
                     return true;
                 }
@@ -30,7 +41,18 @@ var managers;
                 object1TopLeft.y < object2TopLeft.y + object2.height &&
                 object1TopLeft.y + object1.height > object2TopLeft.y) {
                 if (!object2.isColliding) {
-                    console.log("Collision!");
+                    switch (object2.type) {
+                        case enums.GameObjectType.ENEMY:
+                            console.log("Collision with enemy!");
+                            //let yaySound = createjs.Sound.play("yay");
+                            //yaySound.volume = 0.2;
+                            break;
+                        case enums.GameObjectType.METEOR:
+                            console.log("Collision with meteor!");
+                            //let thunderSound = createjs.Sound.play("thunder");
+                            //thunderSound.volume = 0.2;
+                            break;
+                    }
                     object2.isColliding = true;
                     return true;
                 }

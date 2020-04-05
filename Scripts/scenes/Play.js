@@ -30,17 +30,31 @@ var scenes;
             this._background = new objects.Background();
             this._spaceship = new objects.Spaceship();
             this._enemy = new objects.Enemy();
+            this._meteors = new Array();
+            for (var index = 0; index < config.Game.METEOR_NUM; index++) {
+                this._meteors.push(new objects.Meteor());
+            }
             this.Main();
         };
         Play.prototype.Update = function () {
+            var _this = this;
             this._background.Update();
             this._spaceship.Update();
             this._enemy.Update();
+            managers.Collision.AABBCheck(this._spaceship, this._enemy);
+            this._meteors.forEach(function (meteor) {
+                meteor.Update();
+                managers.Collision.squaredRadiusCheck(_this._spaceship, meteor);
+            });
         };
         Play.prototype.Main = function () {
             this.addChild(this._background);
             this.addChild(this._spaceship);
             this.addChild(this._enemy);
+            for (var _i = 0, _a = this._meteors; _i < _a.length; _i++) {
+                var meteor = _a[_i];
+                this.addChild(meteor);
+            }
         };
         return Play;
     }(objects.Scene));
