@@ -40,7 +40,7 @@ module objects
         public Start(): void 
         {
             this.type = enums.GameObjectType.MISSILE;
-            this._horizontalSpeed = 5; // 5 px per frame
+            this._horizontalSpeed = 10; // 5 px per frame
             this.velocity = new Vector2(this._horizontalSpeed,0 );
             this.Reset();
         }

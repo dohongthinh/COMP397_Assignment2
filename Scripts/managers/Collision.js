@@ -47,9 +47,11 @@ var managers;
                         console.log("Collision with enemy!");
                         //let yaySound = createjs.Sound.play("yay");
                         //yaySound.volume = 0.2;
-                        config.Game.SCORE_BOARD.Score += 100;
-                        if (config.Game.SCORE > config.Game.HIGH_SCORE) {
-                            config.Game.HIGH_SCORE = config.Game.SCORE;
+                        //config.Game.SCORE_BOARD.Score += 100;
+                        config.Game.SCORE_BOARD.Lives -= 1;
+                        // check if lives falls less than 1 and then switch to END scene
+                        if (config.Game.LIVES < 1) {
+                            config.Game.SCENE = scenes.State.END;
                         }
                     }
                     break;
@@ -62,6 +64,16 @@ var managers;
                         // check if lives falls less than 1 and then switch to END scene
                         if (config.Game.LIVES < 1) {
                             config.Game.SCENE = scenes.State.END;
+                        }
+                    }
+                    break;
+                case enums.GameObjectType.MISSILE:
+                    {
+                        console.log("Collision with missile!");
+                        //let thunderSound = createjs.Sound.play("thunder");
+                        //thunderSound.volume = 0.2;
+                        if (config.Game.SCORE > config.Game.HIGH_SCORE) {
+                            config.Game.HIGH_SCORE = config.Game.SCORE;
                         }
                     }
                     break;

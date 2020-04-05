@@ -47,6 +47,7 @@ var scenes;
             this._background.Update();
             this._spaceship.Update();
             this._missileManager.Update();
+            this._missileManager.CheckCollision(this._enemy);
             this._enemy.Update();
             managers.Collision.AABBCheck(this._spaceship, this._enemy);
             this._meteors.forEach(function (meteor) {

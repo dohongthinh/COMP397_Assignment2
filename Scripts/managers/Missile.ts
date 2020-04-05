@@ -19,7 +19,7 @@ module managers
         private _buildMissilePool():void
         {
             // initialize missile number
-            this._missileNumber = 3;
+            this._missileNumber = 1;
 
             // create an empty container
             this._missilePool = new Array<objects.Missile>();
@@ -58,6 +58,13 @@ module managers
         {
             this._missilePool.forEach(missile => {
                 missile.Update();
+            });
+        }
+
+        public CheckCollision(enemy:objects.Enemy)
+        {
+            this._missilePool.forEach(missile => {
+                managers.Collision.AABBCheck(missile,enemy)
             });
         }
     }

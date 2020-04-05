@@ -10,7 +10,7 @@ var managers;
         // PRIVATE METHODS
         Missile.prototype._buildMissilePool = function () {
             // initialize missile number
-            this._missileNumber = 3;
+            this._missileNumber = 1;
             // create an empty container
             this._missilePool = new Array();
             for (var count = 0; count < this._missileNumber; count++) {
@@ -36,6 +36,11 @@ var managers;
         Missile.prototype.Update = function () {
             this._missilePool.forEach(function (missile) {
                 missile.Update();
+            });
+        };
+        Missile.prototype.CheckCollision = function (enemy) {
+            this._missilePool.forEach(function (missile) {
+                managers.Collision.AABBCheck(missile, enemy);
             });
         };
         return Missile;

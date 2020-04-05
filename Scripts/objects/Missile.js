@@ -40,7 +40,7 @@ var objects;
         // PUBLIC METHODS
         Missile.prototype.Start = function () {
             this.type = enums.GameObjectType.MISSILE;
-            this._horizontalSpeed = 5; // 5 px per frame
+            this._horizontalSpeed = 10; // 5 px per frame
             this.velocity = new objects.Vector2(this._horizontalSpeed, 0);
             this.Reset();
         };

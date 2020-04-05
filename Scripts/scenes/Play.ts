@@ -57,6 +57,8 @@ module scenes
          
            this._missileManager.Update();
 
+           this._missileManager.CheckCollision(this._enemy);
+
            this._enemy.Update();
 
            managers.Collision.AABBCheck(this._spaceship, this._enemy);
@@ -84,7 +86,5 @@ module scenes
             this.addChild(this._scoreBoard.ScoreLabel);
 
         }
-
-        
     }
 }
