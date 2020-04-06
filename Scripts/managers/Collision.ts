@@ -112,6 +112,10 @@ module managers
             {
                 console.log("hit the enemy!");
                         config.Game.SCORE_BOARD.Score += 100;
+                        if(config.Game.SCORE > config.Game.HIGH_SCORE)
+                        {
+                            config.Game.HIGH_SCORE = config.Game.SCORE;
+                        }
                         
             }
         }
