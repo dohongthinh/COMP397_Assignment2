@@ -48,7 +48,7 @@ module objects
         public Reset(): void 
         {
             let randomY = util.Mathf.RandomRange(config.Game.SCREEN_HEIGHT - this.halfHeight,this.halfHeight);
-            this.position = new Vector2( config.Game.SCREEN_WIDTH, randomY);
+            this.position = new Vector2( config.Game.SCREEN_WIDTH+this.width, randomY);
         }
 
         

@@ -45,7 +45,7 @@ var objects;
         };
         Enemy.prototype.Reset = function () {
             var randomY = util.Mathf.RandomRange(config.Game.SCREEN_HEIGHT - this.halfHeight, this.halfHeight);
-            this.position = new objects.Vector2(config.Game.SCREEN_WIDTH, randomY);
+            this.position = new objects.Vector2(config.Game.SCREEN_WIDTH + this.width, randomY);
         };
         return Enemy;
     }(objects.GameObject));

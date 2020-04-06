@@ -47,9 +47,13 @@ var scenes;
             this._background.Update();
             this._spaceship.Update();
             this._missileManager.Update();
-            this._missileManager.CheckCollision(this._enemy);
+            this._missileManager.CheckCollision(this._enemy, this);
             this._enemy.Update();
             managers.Collision.AABBCheck(this._spaceship, this._enemy);
+            if (this._enemy.x == 0) {
+                this.addChild(this._enemy);
+                this._missileManager.AddMissilesToScene(this);
+            }
             this._meteors.forEach(function (meteor) {
                 meteor.Update();
                 managers.Collision.squaredRadiusCheck(_this._spaceship, meteor);

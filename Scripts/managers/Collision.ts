@@ -11,7 +11,7 @@ module managers
             {
                 if(!object2.isColliding)
                     {
-                        Collision._collisionResponse(object2);
+                        Collision._collisionResponse(object1,object2);
                         object2.isColliding = true;
                         return true;
                     }
@@ -39,7 +39,7 @@ module managers
             {
                 if(!object2.isColliding)
                 {
-                    Collision._collisionResponse(object2);
+                    Collision._collisionResponse(object1,object2);
                     object2.isColliding = true;
                     return true;
                 }
@@ -52,8 +52,8 @@ module managers
             return false;
         }
         
-        private static _collisionResponse(object2: objects.GameObject) {
-            switch (object2.type) 
+        private static _collisionResponse(object1: objects.GameObject,object2: objects.GameObject) {
+            /*switch (object2.type) 
             {
                 case enums.GameObjectType.ENEMY:
                     {
@@ -68,6 +68,7 @@ module managers
                         {
                             config.Game.SCENE = scenes.State.END;
                         }
+                        
                     }
                     break;
                 case enums.GameObjectType.METEOR:
@@ -84,17 +85,34 @@ module managers
                         }
                     }
                     break;
-                case enums.GameObjectType.MISSILE:
-                    {
-                        console.log("Collision with missile!");
-                        //let thunderSound = createjs.Sound.play("thunder");
-                        //thunderSound.volume = 0.2;
-                        if(config.Game.SCORE > config.Game.HIGH_SCORE)
+            }*/
+            if (object1.type==enums.GameObjectType.SPACESHIP && object2.type == enums.GameObjectType.ENEMY)
+            {
+                console.log("Collision between spaceship and enemy!");
+                        config.Game.SCORE_BOARD.Lives -= 1;
+    
+                        // check if lives falls less than 1 and then switch to END scene
+                        if(config.Game.LIVES < 1)
                         {
-                            config.Game.HIGH_SCORE = config.Game.SCORE;
+                            config.Game.SCENE = scenes.State.END;
                         }
-                    }
-                    break;
+            }
+            else if (object1.type==enums.GameObjectType.SPACESHIP && object2.type == enums.GameObjectType.METEOR)
+            {
+                console.log("Collision with meteor!");
+                        config.Game.SCORE_BOARD.Lives -= 1;
+    
+                        // check if lives falls less than 1 and then switch to END scene
+                        if(config.Game.LIVES < 1)
+                        {
+                            config.Game.SCENE = scenes.State.END;
+                        }
+            }
+            if (object1.type==enums.GameObjectType.MISSILE && object2.type == enums.GameObjectType.ENEMY)
+            {
+                console.log("hit the enemy!");
+                        config.Game.SCORE_BOARD.Score += 100;
+                        
             }
         }
 

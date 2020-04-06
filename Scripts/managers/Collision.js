@@ -9,7 +9,7 @@ var managers;
             var radii = object1.halfWidth + object2.halfWidth;
             if (objects.Vector2.sqrDistance(object1.position, object2.position) < (radii * radii)) {
                 if (!object2.isColliding) {
-                    Collision._collisionResponse(object2);
+                    Collision._collisionResponse(object1, object2);
                     object2.isColliding = true;
                     return true;
                 }
@@ -30,7 +30,7 @@ var managers;
                 object1TopLeft.y < object2TopLeft.y + object2.height &&
                 object1TopLeft.y + object1.height > object2TopLeft.y) {
                 if (!object2.isColliding) {
-                    Collision._collisionResponse(object2);
+                    Collision._collisionResponse(object1, object2);
                     object2.isColliding = true;
                     return true;
                 }
@@ -40,8 +40,9 @@ var managers;
             }
             return false;
         };
-        Collision._collisionResponse = function (object2) {
-            switch (object2.type) {
+        Collision._collisionResponse = function (object1, object2) {
+            /*switch (object2.type)
+            {
                 case enums.GameObjectType.ENEMY:
                     {
                         console.log("Collision with enemy!");
@@ -49,10 +50,13 @@ var managers;
                         //yaySound.volume = 0.2;
                         //config.Game.SCORE_BOARD.Score += 100;
                         config.Game.SCORE_BOARD.Lives -= 1;
+    
                         // check if lives falls less than 1 and then switch to END scene
-                        if (config.Game.LIVES < 1) {
+                        if(config.Game.LIVES < 1)
+                        {
                             config.Game.SCENE = scenes.State.END;
                         }
+                        
                     }
                     break;
                 case enums.GameObjectType.METEOR:
@@ -61,22 +65,34 @@ var managers;
                         //let thunderSound = createjs.Sound.play("thunder");
                         //thunderSound.volume = 0.2;
                         config.Game.SCORE_BOARD.Lives -= 1;
+    
                         // check if lives falls less than 1 and then switch to END scene
-                        if (config.Game.LIVES < 1) {
+                        if(config.Game.LIVES < 1)
+                        {
                             config.Game.SCENE = scenes.State.END;
                         }
                     }
                     break;
-                case enums.GameObjectType.MISSILE:
-                    {
-                        console.log("Collision with missile!");
-                        //let thunderSound = createjs.Sound.play("thunder");
-                        //thunderSound.volume = 0.2;
-                        if (config.Game.SCORE > config.Game.HIGH_SCORE) {
-                            config.Game.HIGH_SCORE = config.Game.SCORE;
-                        }
-                    }
-                    break;
+            }*/
+            if (object1.type == enums.GameObjectType.SPACESHIP && object2.type == enums.GameObjectType.ENEMY) {
+                console.log("Collision between spaceship and enemy!");
+                config.Game.SCORE_BOARD.Lives -= 1;
+                // check if lives falls less than 1 and then switch to END scene
+                if (config.Game.LIVES < 1) {
+                    config.Game.SCENE = scenes.State.END;
+                }
+            }
+            else if (object1.type == enums.GameObjectType.SPACESHIP && object2.type == enums.GameObjectType.METEOR) {
+                console.log("Collision with meteor!");
+                config.Game.SCORE_BOARD.Lives -= 1;
+                // check if lives falls less than 1 and then switch to END scene
+                if (config.Game.LIVES < 1) {
+                    config.Game.SCENE = scenes.State.END;
+                }
+            }
+            if (object1.type == enums.GameObjectType.MISSILE && object2.type == enums.GameObjectType.ENEMY) {
+                console.log("hit the enemy!");
+                config.Game.SCORE_BOARD.Score += 100;
             }
         };
         return Collision;

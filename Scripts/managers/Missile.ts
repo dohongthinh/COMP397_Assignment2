@@ -19,7 +19,7 @@ module managers
         private _buildMissilePool():void
         {
             // initialize missile number
-            this._missileNumber = 1;
+            this._missileNumber = 100;
 
             // create an empty container
             this._missilePool = new Array<objects.Missile>();
@@ -61,10 +61,16 @@ module managers
             });
         }
 
-        public CheckCollision(enemy:objects.Enemy)
+        public CheckCollision(enemy:objects.Enemy,scene:objects.Scene)
         {
             this._missilePool.forEach(missile => {
-                managers.Collision.AABBCheck(missile,enemy)
+                
+                if(managers.Collision.AABBCheck(missile,enemy))
+                {
+                    scene.removeChild(missile);
+                    enemy.position = new objects.Vector2(0 - enemy.width,-util.Mathf.RandomRange(config.Game.SCREEN_HEIGHT - enemy.halfHeight,enemy.halfHeight));                 
+                }
+                
             });
         }
     }
