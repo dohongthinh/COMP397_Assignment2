@@ -18,6 +18,7 @@ let Game = (function(){
         {id:"startButton", src:"./Assets/images/startButton.png"},
         {id:"nextButton", src:"./Assets/images/nextButton.png"},
         {id:"backButton", src:"./Assets/images/backButton.png"},
+        {id:"instructionButton", src:"./Assets/images/instructionButton.png"},
         {id:"background", src:"./Assets/images/background.gif"},
         {id:"spaceShip", src:"./Assets/images/spaceShip.png"},
         {id:"enemy", src:"./Assets/images/enemy.png"},
@@ -95,6 +96,10 @@ let Game = (function(){
             case scenes.State.PLAY:
                 console.log("switch to Play Scene");
                 currentScene = new scenes.Play(); 
+                break;
+            case scenes.State.INSTRUCTION:
+                console.log("switch to Instruction Scene");
+                currentScene = new scenes.Instruction(); 
                 break;
             case scenes.State.END:
                 console.log("switch to End Scene");
